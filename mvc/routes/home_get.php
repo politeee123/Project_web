@@ -1,2 +1,4 @@
 <?php
-renderView('home_get');
+$result = getEvent();
+renderView('home_get', array('result' => $result));
+// renderView('home_get');
