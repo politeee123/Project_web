@@ -1,9 +1,20 @@
 <main>
     <h1>Event</h1>
-    <form action="Event" method="get">
-        <input type="text" name="keyword" />
-        <button type="submit">Search</button>
-    </form>
+    <div class="container_event mt-3 mb-3">
+        <div class="row">
+            <div class="col-md-6">
+                <form action="Event" method="get">
+                    <input type="text" name="keyword" />
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            <div class="col-md-6 text-end">
+                <form action="create_event" method="get">
+                    <button type="submit">Create Event</button>
+                </form>
+            </div>
+        </div>
+    </div>
     <?php
     if (isset($data['result'])) {
         if ($data['result']->num_rows > 0) {

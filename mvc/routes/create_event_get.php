@@ -1,2 +1,2 @@
 <?php
-    renderView('create_event_get');
+renderView('create_event_get');

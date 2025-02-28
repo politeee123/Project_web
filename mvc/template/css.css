@@ -26,6 +26,12 @@
   .event-description {
     line-height: 1.6;
   }
+  .container_event{
+    display:  flex;    
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
   /*/////////////////////////////////////////////*/
   
   

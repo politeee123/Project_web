@@ -36,7 +36,7 @@
                             <a class="btn btn-primary" href="/login">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-primary" href="/si">sign in</a>
+                            <a class="btn btn-primary" href="/sign_in">sign in</a>
                         </li>
                     </ul>
                 </div>

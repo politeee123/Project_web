@@ -17,3 +17,20 @@ function getEventByKeyword(string $keyword): mysqli_result|bool
     $result = $stmt->get_result();
     return $result;
 }
+function addEvent(string $event_name, string $date, string $location, int $max_participants, string $description, string $image): bool
+{
+    $conn = getConnection();
+    $sql = 'insert into event (event_name, description, date, location, description, max_participants, image) values (?, ?, ?, ?, ?, ?)';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ssssis', $event_name,$description,$date,$location,$max_participants,$image);
+    try {
+        $stmt->execute();
+        if ($stmt->affected_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (Exception $e) {
+        return false;
+    }
+}
