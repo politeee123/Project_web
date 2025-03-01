@@ -1,22 +1,6 @@
-<main>
-    <h1>Event</h1>
-    <div class="container_event mt-3 mb-3">
-        <div class="row">
-            <div class="col-md-6">
-                <form action="Event" method="get">
-                    <input type="text" name="keyword" />
-                    <button type="submit">Search</button>
-                </form>
-            </div>
-            <div class="col-md-6 text-end">
-                <form action="create_event" method="get">
-                    <button type="submit">Create Event</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <?php
-    if (isset($data['result'])) {
+
+<?php
+
         if ($data['result']->num_rows > 0) {
             echo '<div class="container">';
             echo '<div class="row">';
@@ -30,7 +14,7 @@
                 echo '<p class="card-text"><strong>Location:</strong> ' . $row['location'] . '</p>';
                 echo '<p class="card-text"><strong>Max Participants:</strong> ' . $row['max_participants'] . '</p>';
                 echo '<p class="card-text"><strong>Description:</strong> ' . $row['description'] . '</p>';
-                echo '<a href="event_register?id=' . $row['event_id'] . '" class="btn btn-primary">Register</a>';
+                echo '<a href="event_register?id=' . $row['event_id'] . '" class="btn btn-primary">edits</a>';
                 echo '</div>'; // card-body
                 echo '</div>'; // card
                 echo '</div>'; // col-md-4
@@ -40,6 +24,5 @@
         } else {
             echo '<p class="text-center">No events found.</p>';
         }
-    }
+    
     ?>
-</main>

@@ -11,7 +11,7 @@
             while ($row = $data['result']->fetch_assoc()) {
                 echo '<div class="col-md-4 mb-4">'; // 3 คอลัมต่อแถว
                 echo '<div class="card shadow-sm h-100">'; // ใช้ Bootstrap Card
-                echo '<img src="images/' . $row['image'] . '" class="card-img-top" alt="Event Image">'; // รูปภาพกิจกรรม
+                // echo '<img src="images/' . $row['image'] . '" class="card-img-top" alt="Event Image">'; // รูปภาพกิจกรรม
                 echo '<div class="card-body">';
                 echo '<h5 class="card-title">' . $row['event_name'] . '</h5>';
                 echo '<p class="card-text"><strong>Date:</strong> ' . $row['date'] . '</p>';

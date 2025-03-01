@@ -26,3 +26,4 @@ if ($username && password_verify($password, $user['password'])) {
 
 // header('Location: /');
 
+?>

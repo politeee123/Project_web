@@ -16,7 +16,7 @@ require_once INCLUDES_DIR . '/db.php';
 
 //dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 // echo '$_SERVER["REQUEST_URI"]='.$_SERVER['REQUEST_URI'];
-const PUBLIC_ROUTES = ['/', '/login'];
+const PUBLIC_ROUTES = ['/', '/login','/sign_in'];
 
 if (in_array(strtolower($_SERVER['REQUEST_URI']), PUBLIC_ROUTES)) {
     // ถ้าเป็นหน้า public (หน้า login หรือหน้าแรก) ให้ดำเนินการปกติ

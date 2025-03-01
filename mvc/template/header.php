@@ -12,21 +12,24 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">Event Management</a>
+                <a class="navbar-brand" href="/">Home</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="/">Home</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="/Event">Events</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/create_event">Create</a>
+                            <a class="nav-link" href="/event_manage">Event Management</a>
                         </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="/create_event">Create</a>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="/course">Attendance</a>
                         </li>
