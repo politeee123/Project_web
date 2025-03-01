@@ -24,7 +24,7 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
-                <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+                <input type="file" class="form-control" id="image" name="image" accept="image/*" >
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
