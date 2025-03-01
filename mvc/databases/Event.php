@@ -15,16 +15,26 @@ function getEventByKeyword(string $keyword): mysqli_result|bool {
     $stmt->execute();
     return $stmt->get_result();
 }
-function addEvent(string $event_name,string $description,string $date,string $location,int $max_participants,string $image): mysqli_result|bool {
+function addEvent(string $event_name, string $description, string $date, string $location, int $max_participants, string $image) {
     $conn = getConnection();
-    $sql = 'INSERT INTO event (event_name,description,date,location,max_participants,image) VALUES (?,?,?,?,?,?)';
+    $sql = 'INSERT INTO event (creator_id, event_name, description, date, location, max_participants, image) VALUES (?, ?, ?, ?, ?, ?, ?)';
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('s', $event_name);
-    $stmt->bind_param('s', $description);
-    $stmt->bind_param('s', $date);
-    $stmt->bind_param('s', $location);
-    $stmt->bind_param('i', $max_participants);
-    $stmt->bind_param('s', $image);
-    $stmt->execute();
-    return $stmt->get_result();
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
+    }
+    $stmt->bind_param(
+        'issssis', 
+        $_SESSION['user_id'],
+        $event_name, 
+        $description, 
+        $date, 
+        $location, 
+        $max_participants, 
+        $image
+    );
+    $result = $stmt->execute();
+    $stmt->close();
+    $conn->close();
+    return $result;
 }
+

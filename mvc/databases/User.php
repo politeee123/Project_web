@@ -18,7 +18,6 @@ function findByUsername(string $username) {
 function addUser(string $user_name, string $password, string $email, string $role): bool {
     $conn = getConnection();
 
-    // ตรวจสอบว่า username มีอยู่ในฐานข้อมูลหรือยัง
     $sql_check = 'SELECT COUNT(*) FROM user WHERE username = ?';
     $stmt_check = $conn->prepare($sql_check);
     $stmt_check->bind_param('s', $user_name);
@@ -26,13 +25,10 @@ function addUser(string $user_name, string $password, string $email, string $rol
     $stmt_check->bind_result($count);
     $stmt_check->fetch();
     $stmt_check->close();
-
     if ($count > 0) {
         return false;
     }
-
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
     $sql = 'INSERT INTO user (username, password, email, role) VALUES (?, ?, ?, ?)';
     $stmt = $conn->prepare($sql);
     if (!$stmt) {

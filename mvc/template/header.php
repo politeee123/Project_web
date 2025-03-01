@@ -32,12 +32,29 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
+                    <?php
+                        if (isset($_SESSION['user_id'])) {
+                            echo '<li class="nav-item">';
+                            echo '<span class="nav-link">Welcome, ' . $_SESSION['username'] . '</span>';
+                            echo '</li>';
+                        } else {
+                            echo '<li class="nav-item">';
+                            echo '<a class="btn btn-primary me-2" href="/login">Login</a>';
+                            echo '</li>';
+                            echo '<li class="nav-item">';
+                            echo '<a class="btn btn-secondary" href="/sign_in">Sign In</a>';
+                            echo '</li>';
+                        }
+                        ?>
                         <li class="nav-item">
+                            <a class="btn btn-primary" href="/log_out">Log out</a>
+                        </li>
+                        <!-- <li class="nav-item">
                             <a class="btn btn-primary" href="/login">Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="btn btn-primary" href="/sign_in">sign in</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
