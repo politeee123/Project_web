@@ -1,38 +1,60 @@
 <?php
-// ตรวจสอบว่ามีค่า event_id ใน URL หรือไม่
-if (isset($_GET['id'])) {
-    $event_id = $_GET['id'];
+if (isset($data['result']) && $data['result']->num_rows > 0) {
+    echo '<div class="container">';
+    echo '<div class="row">';
 
-    // เชื่อมต่อกับฐานข้อมูล (ต้องปรับตามการเชื่อมต่อฐานข้อมูลของคุณ)
-    $conn = getConnection();
+    while ($row = $data['result']->fetch_assoc()) { 
+        echo '<div class="col-md-4 mb-4">';
+        echo '<div class="card shadow-sm h-100">';
 
-    // ตรวจสอบการเชื่อมต่อ
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+        $image_path = !empty($row['image']) ? '/' . htmlspecialchars($row['image']) : '/public/uploads/default.jpg';
+        
+        echo '<img src="' . $image_path . '" class="card-img-top" alt="Event Image" style="height: 200px; object-fit: cover;">';
+        echo '<div class="card-body">';
+        echo '<h5 class="card-title">' . htmlspecialchars($row['event_name']) . '</h5>';
+        echo '<p class="card-text"><strong>Date:</strong> ' . htmlspecialchars($row['date']) . '</p>';
+        echo '<p class="card-text"><strong>Location:</strong> ' . htmlspecialchars($row['location']) . '</p>';
+        echo '<p class="card-text"><strong>Max Participants:</strong> ' . htmlspecialchars($row['max_participants']) . '</p>';
+        echo '<p class="card-text"><strong>Description:</strong> ' . htmlspecialchars($row['description']) . '</p>';
+        ?>
+        <form action="event_register" method="POST">
+            <input type="hidden" name="event_id" value="<?php echo htmlspecialchars($row['event_id']); ?>">
+            
+            <label for="status">Status:</label>
+            <select name="status" class="form-select">
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+            </select>
+            
+            <button type="submit" class="btn btn-primary mt-2">Press</button>
+        </form>
+
+        <?php
+        
+        echo '</div>'; 
+        echo '</div>'; 
+        echo '</div>'; 
     }
-
-    // ดึงข้อมูลกิจกรรมจากฐานข้อมูล
-    $sql = "SELECT * FROM events WHERE event_id = $event_id";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        // แสดงข้อมูลกิจกรรม
-        $row = $result->fetch_assoc();
-        echo '<div class="container">';
-        echo '<h1>' . $row['event_name'] . '</h1>';
-        echo '<p><strong>Date:</strong> ' . $row['date'] . '</p>';
-        echo '<p><strong>Location:</strong> ' . $row['location'] . '</p>';
-        echo '<p><strong>Max Participants:</strong> ' . $row['max_participants'] . '</p>';
-        echo '<p><strong>Description:</strong> ' . $row['description'] . '</p>';
-        // เพิ่มปุ่ม Register หรืออื่นๆ ตามที่ต้องการ
-        echo '<a href="register_action.php?id=' . $row['event_id'] . '" class="btn btn-success">Confirm Registration</a>';
-        echo '</div>'; // container
-    } else {
-        echo '<p>Event not found.</p>';
-    }
-
-    $conn->close();
+    echo '</div>';
+    echo '</div>'; 
 } else {
-    echo '<p>No event ID provided.</p>';
+    echo '<p class="text-center">No events found.</p>';
 }
-?>
+
+    // if ($result->num_rows > 0) {
+    //     // แสดงข้อมูลกิจกรรม
+    //     $row = $result->fetch_assoc();
+    //     echo '<div class="container">';
+    //     echo '<h1>' . $row['event_name'] . '</h1>';
+    //     echo '<p><strong>Date:</strong> ' . $row['date'] . '</p>';
+    //     echo '<p><strong>Location:</strong> ' . $row['location'] . '</p>';
+    //     echo '<p><strong>Max Participants:</strong> ' . $row['max_participants'] . '</p>';
+    //     echo '<p><strong>Description:</strong> ' . $row['description'] . '</p>';
+    //     echo '<a href="event_register?event_id=' . htmlspecialchars($row['event_id']) . '" class="btn btn-primary">Register</a>';
+    //     echo '</div>'; // container
+    // } else {
+    //     echo '<p>Event not found.</p>';
+    // }
+
+

@@ -15,6 +15,14 @@ function getEventByKeyword(string $keyword): mysqli_result|bool {
     $stmt->execute();
     return $stmt->get_result();
 }
+function getEventById(int $event_id):mysqli_result|bool{
+    $conn = getConnection();
+    $sql = 'SELECT * FROM event WHERE event_id = ?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $event_id);
+    $stmt->execute();
+    return $stmt->get_result();
+}
 function addEvent(string $event_name, string $description, string $date, string $location, int $max_participants, string $image) {
     $conn = getConnection();
     $sql = 'INSERT INTO event (creator_id, event_name, description, date, location, max_participants, image) VALUES (?, ?, ?, ?, ?, ?, ?)';

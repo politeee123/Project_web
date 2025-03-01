@@ -10,3 +10,8 @@ function renderView(string $template, array $data = []): void
 function login(string $template){    
     include TEMPLATES_DIR . '/'.$template.'.php';
 }
+function renderViewint(string $template, int $data): void
+{
+    include TEMPLATES_DIR . '/header.php';    
+    include TEMPLATES_DIR . '/' . $template . '.php';
+}
