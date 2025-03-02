@@ -1,5 +1,5 @@
 <main>
-    <h1>Event</h1>
+<h1 class="text-center mt-4">Event</h1>
     <!-- <form action="Event" method="get">
     </form> -->
     <?php
