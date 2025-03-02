@@ -20,10 +20,4 @@ if ($username && password_verify($password, $user['password'])) {
     $_SESSION['error'] = "Username หรือ Password ไม่ถูกต้อง";
     login('login_get');
 }
-// Assume that login success
-// $unix_timestamp = time();
-// $_SESSION['timestamp'] = $unix_timestamp;
-
-// header('Location: /');
-
 ?>
