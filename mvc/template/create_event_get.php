@@ -9,6 +9,9 @@
             <div class="mb-3">
                 <label for="date" class="form-label">Date</label>
                 <input type="date" class="form-control" id="date" name="date" required>
+                <!-- <label for="datetime" class="form-label">Date & Time</label>
+                <input type="datetime-local" class="form-control" id="datetime" name="datetime" required>
+                 -->
             </div>
             <div class="mb-3">
                 <label for="location" class="form-label">Location</label>

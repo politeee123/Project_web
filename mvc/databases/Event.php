@@ -55,4 +55,18 @@ function addEvent(string $event_name, string $description, string $date, string 
     $conn->close();
     return $result;
 }
+function updateEvent(int $event_id, string $event_name, string $description, string $date, string $location, int $max_participants, string $image) {
+    $conn = getConnection(); // แก้ไขให้ใช้ getConnection()
+    $stmt = $conn->prepare("UPDATE event SET event_name=?, description=?, date=?, location=?, max_participants=?, image=? WHERE event_id=?");
+    
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
+    }
 
+    $stmt->bind_param("ssssisi", $event_name, $description, $date, $location, $max_participants, $image, $event_id);
+    $result = $stmt->execute();
+    
+    $stmt->close();
+    $conn->close();
+    return $result;
+}
