@@ -40,6 +40,9 @@
                             echo '<li class="nav-item">';
                             echo '<span class="nav-link">Welcome, ' . $_SESSION['username'] . '</span>';
                             echo '</li>';
+                            echo '<li class="nav-item">';
+                            echo '<a class="btn btn-primary" href="/log_out">Log out</a>';
+                            echo '</li>';
                         } else {
                             echo '<li class="nav-item">';
                             echo '<a class="btn btn-primary me-2" href="/login">Login</a>';
@@ -49,9 +52,8 @@
                             echo '</li>';
                         }
                         ?>
-                        <li class="nav-item">
-                            <a class="btn btn-primary" href="/log_out">Log out</a>
-                        </li>
+                        
+                        
                         <!-- <li class="nav-item">
                             <a class="btn btn-primary" href="/login">Login</a>
                         </li>
