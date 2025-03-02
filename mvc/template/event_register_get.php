@@ -22,8 +22,7 @@ if (isset($data['result']) && $data['result']->num_rows > 0) {
             
             <label for="status">Status:</label>
             <select name="status" class="form-select">
-                <option value="pending">Pending</option>
-                <option value="approved">Approved</option>
+                <option value="pending">Approved</option>
                 <option value="rejected">Rejected</option>
             </select>
             
