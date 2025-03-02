@@ -30,9 +30,6 @@
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="/create_event">Create</a>
                         </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="/course">Attendance</a>
-                        </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
                     <?php

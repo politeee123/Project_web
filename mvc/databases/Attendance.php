@@ -15,29 +15,39 @@ function getAttendance($status): mysqli_result|bool
 
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
-        die("Prepare failed: " . $conn->error); // Debug ข้อผิดพลาดถ้า prepare ล้มเหลว
+        die("Prepare failed: " . $conn->error);
     }
-
-    $user_id = $_SESSION['user_id']; // ดึงค่า user_id จาก session  
-    $stmt->bind_param('si', $status, $user_id); // 's' สำหรับ string, 'i' สำหรับ integer  
+    $user_id = $_SESSION['user_id'];
+    $stmt->bind_param('si', $status, $user_id);
     $stmt->execute();
-    
-    $result = $stmt->get_result(); // ใช้ get_result() เพื่อดึงข้อมูล  
+    $result = $stmt->get_result();
     return $result;
 }
-
-
-function addCheck_in(): mysqli_result|bool
+function addatten($event_id,$status): mysqli_result|bool
 {
     $conn = getConnection();
-    $sql = 'SELECT *
-            FROM user
-            JOIN registration ON user.user_id = registration.user_id
-            JOIN event ON registration.event_id = event.event_id
-            LEFT JOIN attendance ON user.user_id = attendance.user_id AND event.event_id = attendance.event_id
-            WHERE registration.status = ?';
-;
+    $user_id = $_SESSION['user_id'];
+    $check_in_time = date("Y-m-d H:i:s");
+    $sql = 'INSERT INTO attendance (event_id, user_id,check_in_status , check_in_time) VALUES (?, ?, ?, ?)';
     $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
+    }
+    $stmt->bind_param('iiss', $event_id, $user_id,$status, $check_in_time);
     $result = $stmt->execute();
     return $result;
 }
+// function addCheck_in(): mysqli_result|bool
+// {
+//     $conn = getConnection();
+//     $sql = 'SELECT *
+//             FROM user
+//             JOIN registration ON user.user_id = registration.user_id
+//             JOIN event ON registration.event_id = event.event_id
+//             LEFT JOIN attendance ON user.user_id = attendance.user_id AND event.event_id = attendance.event_id
+//             WHERE registration.status = ?';
+// ;
+//     $stmt = $conn->prepare($sql);
+//     $result = $stmt->execute();
+//     return $result;
+// }
