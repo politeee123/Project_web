@@ -9,7 +9,13 @@
     }
 
     if ($status == 'approved') {
-        # code...
+        $update = UpdateStatus($user_id, $event_id, $status);
+        $result = getUser_status($event_id,'pending');
+        if ($result) {    
+            renderView('check_status_get',array('result' => $result));
+        } else {
+            badRequest(message: 'Error');
+        }
     }else{
         $update = UpdateStatus($user_id, $event_id, $status);
         $res = deleteRegistration($user_id,$event_id);

@@ -46,7 +46,7 @@ function deleteRegistration($user_id, $event_id): bool {
     $conn = getConnection();
     $sql = "DELETE FROM registration WHERE status = 'rejected' AND user_id = ? AND event_id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $user_id, $event_id);
+    $stmt->bind_param("ii", $user_id, $event_id); 
     return $stmt->execute();
 }
 function UpdateStatus($user_id, $event_id, $status): bool {

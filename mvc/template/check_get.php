@@ -32,8 +32,8 @@ if (!empty($data['result']) && $data['result']->num_rows > 0) {
             <input type="hidden" name="event_id" value="<?php echo htmlspecialchars($event['event_id']); ?>">
             <label for="status">Status:</label>
             <select name="status" class="form-select">
-                <option value="pending">Check in</option>
-                <option value="rejected">Check Out</option>
+                <option value="checked-in">Check in</option>
+                <option value="not checked-in">Check Out</option>
             </select>
             <button>Summit</button>
         </form>
