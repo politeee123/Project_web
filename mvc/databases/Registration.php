@@ -21,22 +21,36 @@ function addRegistration($event_id, $status = 'pending') {
     }
 }
 
-function getUser_status(): mysqli_result|bool {
+function getUser_status($event_id): ?mysqli_result {
     $conn = getConnection();
-    $sql = 'SELECT user.username, registration.status 
-            FROM user, registration 
-            WHERE user.user_id = registration.user_id;';
+
+    if (!$conn) {
+        die("❌ Connection failed: " . mysqli_connect_error());
+    }
+
+    $sql = "SELECT user.username, registration.status 
+            FROM user
+            JOIN registration ON user.user_id = registration.user_id
+            WHERE registration.event_id = ? 
+            AND registration.status = 'approved'";
+    
     $stmt = $conn->prepare($sql);
-    $result = $stmt->execute();
-    return $result;
+    $stmt->bind_param("i", $event_id);
+    if (!$stmt->execute()) {
+        error_log("❌ Query failed: " . $conn->error);
+        return null;
+    }
+    $result = $stmt->get_result();
+    return $result ?: null;
 }
+
 function UpdateStatus($user_id, $event_id, $status): bool {
     $conn = getConnection();
 
     $sql = "UPDATE registration SET status = ? WHERE user_id = ? AND event_id = ?";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sii", $status, $user_id, $event_id);
+    $stmt->bind_param("iis", $event_id, $_SESSION['user_id'], $status);
     
     $result = $stmt->execute();
     
