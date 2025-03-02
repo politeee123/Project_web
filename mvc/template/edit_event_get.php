@@ -13,8 +13,9 @@ $event = $data['result']->fetch_assoc();
             </div>
 
             <div class="mb-3">
-                <label for="date" class="form-label">Date</label>
-                <input type="date" class="form-control" id="date" name="date" value="<?php echo htmlspecialchars($event['date']); ?>" required>
+                <label for="datetime" class="form-label">Date & Time</label>
+                <input type="datetime-local" class="form-control" id="datetime" name="datetime" value="<?php echo htmlspecialchars($event['date']); ?> required>
+
             </div>
 
             <div class="mb-3">
@@ -34,12 +35,11 @@ $event = $data['result']->fetch_assoc();
 
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
-                <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                <input type="file" class="form-control" id="image" name="image" accept="image/*" >
 
                 <?php if (!empty($event['image'])): ?>
                     <p>Current Image:</p>
                     <img src="<?= htmlspecialchars($event['image']) ?>" alt="Event Image" style="width: 150px;">
-                    <input type="hidden" name="current_image" value="<?= htmlspecialchars($event['image']) ?>">
                 <?php endif; ?>
             </div>
 

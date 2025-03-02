@@ -3,10 +3,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $event_id = (int) $_POST['event_id'];
     $event_name = trim($_POST['event_name']);
     $description = trim($_POST['description']);
-    $date = trim($_POST['date']);
+    $date = trim($_POST['datetime']);
     $location = trim($_POST['location']);
     $max_participants = (int) $_POST['max_participants'];
-    $image = trim($_POST['image']);
     $image_path = '';
 
     $upload_dir = __DIR__ . '/../public/uploads/';
@@ -25,8 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     if (updateEvent($event_id, $event_name, $description, $date, $location, $max_participants, $image_path_db )) {
-        header("Location: /view_event?event_id=$event_id");
-        exit;
+        renderView('Event_get');
     } else {
         echo "Error updating event.";
     }

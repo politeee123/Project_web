@@ -30,7 +30,9 @@
                 ?>
                 <form action="check_status" method="post">
                     <label for="status">Select Status:</label>
-                    <input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
+                    <input type="hidden" name="event_id" value="<?php echo $row['event_id']; ?>">
+                    <input type="hidden" name="user_id" value="<?php echo $row['user_id']; ?>">
+                    <input type="hidden" name="username" value="<?php echo $row['username']; ?>">
                     <select name="status" id="status" class="form-select">
                         <option value="approved" <?php echo ($row['status'] == 'approved') ? 'selected' : ''; ?>>✅ Accept</option>
                         <option value="rejected" <?php echo ($row['status'] == 'rejected') ? 'selected' : ''; ?>>❌ Reject</option>

@@ -1,6 +1,6 @@
 <?php
 $event_name = $_POST['event_name'] ?? '';
-$date = $_POST['date'] ?? '';
+$date = $_POST['datetime'] ?? '';
 $location = $_POST['location'] ?? '';
 $max_participants = isset($_POST['max_participants']) ? (int) $_POST['max_participants'] : 0;
 $description = $_POST['description'] ?? '';
