@@ -28,7 +28,7 @@ if (!empty($data['result']) && $data['result']->num_rows > 0) {
     echo '<div class="card-footer text-center">';
     echo sprintf('<a href="event_edit.php?event_id=%s" class="btn btn-primary">Edit Event</a>', htmlspecialchars($event['event_id']));
     echo sprintf(
-        ' <a href="check_status.php?event_id=%s" class="btn btn-info">Check Status</a>',
+        ' <a href="check_status?event_id=%s" class="btn btn-info">Check Status</a>',
         htmlspecialchars($event['event_id'])
     );
     echo '</div>'; // ปิด card-footer
