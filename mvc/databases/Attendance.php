@@ -17,7 +17,12 @@ function getAttendance($status): mysqli_result|bool
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
-    $user_id = $_SESSION['user_id'];
+    if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
+        echo "";
+    } else {
+        $user_id = $_SESSION['user_id'];
+    }
+    
     $stmt->bind_param('si', $status, $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
