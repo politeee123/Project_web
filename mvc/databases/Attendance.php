@@ -4,7 +4,7 @@ function getAttendance($status): mysqli_result|bool
 {
     $conn = getConnection();
     
-    $sql = 'SELECT * 
+    $sql = 'SELECT event.event_id, event.creator_id, event.event_name, event.description, event.date, event.location, event.max_participants, event.image
             FROM user
             JOIN registration ON user.user_id = registration.user_id
             JOIN event ON registration.event_id = event.event_id

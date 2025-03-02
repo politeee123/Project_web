@@ -18,7 +18,7 @@
                 echo '<p class="card-text"><strong>Location:</strong> ' . $row['location'] . '</p>';
                 echo '<p class="card-text"><strong>Max Participants:</strong> ' . $row['max_participants'] . '</p>';
                 echo '<p class="card-text"><strong>Description:</strong> ' . $row['description'] . '</p>';
-                echo '<a href="event_register?event_id=' . htmlspecialchars($row['event_id']) . '" class="btn btn-primary">Register</a>';
+                echo '<a href="check?event_id=' . (int)($row['event_id']) . '" class="btn btn-primary">Check</a>';
                 echo '</div>'; // card-body
                 echo '</div>'; // card
                 echo '</div>'; // col-md-4
