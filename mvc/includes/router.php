@@ -45,9 +45,7 @@ function dispatch(string $uri, string $method): void
         notFound();
     }
 }
-function badRequest(string $message = 'Bad request'): void
-{
+function badRequest($message = 'Bad request') {
     http_response_code(400);
-    echo $message;
-    exit;
+    echo "<script>alert('$message');</script>";
 }

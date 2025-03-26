@@ -14,16 +14,16 @@
         if ($result) {    
             renderView('check_status_get',array('result' => $result));
         } else {
-            badRequest(message: 'Error');
+            badRequest('Error');
         }
     }else{
         $update = UpdateStatus($user_id, $event_id, $status);
-        $res = deleteRegistration($user_id,$event_id);
+        $res = updateRegistrationStatus($user_id,$event_id);
         $result = getUser_status($event_id,'pending');
         if ($res) {    
             renderView('check_status_get',array('result' => $result));
         } else {
-            badRequest(message: 'Error');
+            badRequest('Error');
         }
 
     }

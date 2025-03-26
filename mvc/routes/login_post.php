@@ -10,7 +10,7 @@ if (empty($username) || empty($password)) {
     exit();
 }
 $user = findByUsername($username);
-if ($username && password_verify($password, $user['password'])) {
+if ($user && isset($user['password']) && password_verify($password, $user['password'])) {
     $_SESSION['user_id'] = $user['user_id'];
     $_SESSION['username'] = $user['username'];
     $unix_timestamp = time();

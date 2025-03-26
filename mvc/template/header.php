@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Management</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="template\css.css" rel="stylesheet">                   
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">Home</a>
+                <a class="navbar-brand" href="/">หน้าหลัก</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -22,10 +23,10 @@
                             <a class="nav-link" href="/">Home</a>
                         </li> -->
                         <li class="nav-item">
-                            <a class="nav-link" href="/Event">Events</a>
+                            <a class="nav-link" href="/event">กิจกรรม</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/event_manage">Event Management</a>
+                            <a class="nav-link" href="/event_manage">การจัดการกิจกรรม</a>
                         </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="/create_event">Create</a>
@@ -35,20 +36,22 @@
                     <?php
                         if (isset($_SESSION['user_id'])) {
                             echo '<li class="nav-item">';
-                            echo '<span class="nav-link">Welcome, ' . $_SESSION['username'] . '</span>';
+                            echo '<span class="nav-link">ยินดีต้อนรับ, ' . $_SESSION['username'] . '</span>';
+                            echo '</li>';
+                            echo '<li class="nav-item">';
+                            echo '<a class="btn btn-primary" href="/log_out">ออกจากระบบ</a>';
                             echo '</li>';
                         } else {
                             echo '<li class="nav-item">';
-                            echo '<a class="btn btn-primary me-2" href="/login">Login</a>';
+                            echo '<a class="btn btn-primary me-2" href="/login">เข้าสู่ระบบ</a>';
                             echo '</li>';
                             echo '<li class="nav-item">';
-                            echo '<a class="btn btn-secondary" href="/sign_in">Sign In</a>';
+                            // echo '<a class="btn btn-secondary" href="/sign_in">เข้าสู่ระบบ</a>';
                             echo '</li>';
                         }
                         ?>
-                        <li class="nav-item">
-                            <a class="btn btn-primary" href="/log_out">Log out</a>
-                        </li>
+                        
+                        
                         <!-- <li class="nav-item">
                             <a class="btn btn-primary" href="/login">Login</a>
                         </li>

@@ -1,13 +1,15 @@
 <?php
 declare(strict_types=1);
 
-if (!isset($_GET['keyword'])) {
-    $result = getEvent();
-    renderView('Event_get', array('result' => $result));
-} elseif ($_GET['keyword'] == '') {
-    $result = getEvent();
-    renderView('Event_get', array('result' => $result));
-} else {
+$start_date = $_GET['start_date'] ?? null;
+$end_date = $_GET['end_date'] ?? null;
+
+if ($start_date && $end_date) {
+    $result = getEventbyDate($start_date, $end_date);
+} elseif (isset($_GET['keyword']) && $_GET['keyword'] !== '') {
     $result = getEventByKeyword($_GET['keyword']);
-    renderView('Event_get', array('result' => $result));
+} else {
+    $result = getEvent();
 }
+
+renderView('Event_get', array('result' => $result));

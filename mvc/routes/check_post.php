@@ -7,8 +7,10 @@ if (empty($event_id) || empty($Attandance)) {
 }
 
 $res = addatten($event_id, $Attandance);
+$result = getAttendance('approved');
 if ($res) {
-    renderView('Event_get');
+    renderView('home_get',array('result' => $result));
 }else{
-    badRequest("Error");
+    badRequest("ไม่สามรถเช็คชื่อได้");
+    renderView('home_get',array('result' => $result));
 }

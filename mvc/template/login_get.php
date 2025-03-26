@@ -28,7 +28,7 @@
 <body>
 
 <div class="login-container text-center">
-    <h2 class="mb-4">Login</h2>
+    <h2 class="mb-4">เข้าสู่ระบบ</h2>
 
     <?php if (!empty($_SESSION['error'])): ?>
         <div class="alert alert-danger">
@@ -38,14 +38,14 @@
 
     <form action="/login" method="post">
         <div class="mb-3">
-            <label class="form-label"> Username:</label>
-            <input type="text" name="username" class="form-control" placeholder="Enter your username" required>
+            <label class="form-label"> ชื่อ:</label>
+            <input type="text" name="username" class="form-control" placeholder="กรอกชื่อผู้ใช้ของคุณ" required>
         </div>
         <div class="mb-3">
-            <label class="form-label">Password:</label>
-            <input type="password" name="password" class="form-control" placeholder="Enter your password" required>
+            <label class="form-label">รหัสผ่าน:</label>
+            <input type="password" name="password" class="form-control" placeholder="กรอกรหัสผ่านของคุณ" required>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Login</button>
+        <button type="submit" class="btn btn-primary w-100">เข้าสู่ระบบ</button>
     </form>
 
     <p class="mt-3">

@@ -1,22 +1,25 @@
 <?php
     $user_name = $_POST['username']?? '';
     $password = $_POST['password']?? '';
+    $confirm_password = $_POST['confirm_password']?? '';
     $email = $_POST['email']?? '';
-    $role = $_POST['role']?? '';
-
-    if (empty($user_name) || empty($password) || empty($email) || empty($role)) {
-        badRequest("All fields are required");
-    }
-    $res = addUser(
-        $user_name,
-        $password,
-        $email,
-        $role
-    );
-
-    if ($res) {    
-        $_SESSION['message'] = 'Course added successfully!';
-        login('login_get');
-    } else {
-        badRequest(message: 'มีคนใช้ชื่อนี้แล้ว');
+    $role = 'participant';
+    
+    if ($password == $confirm_password) {
+        $res = addUser(
+            $user_name,
+            $password,
+            $email,
+            $role
+        );
+    
+        if ($res) {    
+            login('login_get');
+        } else {
+            $_SESSION['error'] = "ใส่ข้อมูลผิดพลาด";
+            login('sign_in_get');
+        }
+    }else {
+        $_SESSION['error'] = "รหัสผ่านไม่ตรงกัน";
+        login('sign_in_get');
     }
