@@ -41,7 +41,7 @@
             echo '<div class="container">';
             echo '<div class="row">';
 
-            $current_time = date("Y-m-d H:i:s"); // เวลาปัจจุบัน
+            $current_time = date("Y-m-d H:i:s");
 
             while ($row = $data['result']->fetch_assoc()) {
 
@@ -51,17 +51,13 @@
                 $available_slots = $max_participants - $unique_id_count;
 
                 $images = json_decode($row['image'], true);
-                if (!empty($images)) {
-                    $image_urls = array_map(function ($img) {
-                        return 'http://www.demoweb.lnw.mn/public/' . htmlspecialchars($img);
-                    }, $images);
-                    $image_json = json_encode($image_urls);
-                    $first_image = $image_urls[0];
-                } else {
-                    $first_image = 'http://www.demoweb.lnw.mn/public/default_image.jpg';
-                    $image_json = json_encode([$first_image]);
-                }
-
+                $image_urls = !empty($images) && is_array($images) 
+                    ? array_map(fn($img) => htmlspecialchars($img), $images) 
+                    : ['uploads/No_Image.png'];
+                
+                $image_json = json_encode($image_urls);
+                $first_image = $image_urls[0];
+                
     ?>
                 <div class="col-md-4 mb-4">
                     <div class="card shadow-sm h-100">

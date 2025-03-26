@@ -9,10 +9,10 @@ if (isset($data['result']) && $data['result']->num_rows > 0): ?>
                 $max_participants = $row['max_participants'];
                 $available_slots = $max_participants - $unique_id_count;
 
-                $images = json_decode($row['images'], true);
+                $images = json_decode($row['image'], true);
                 $image_urls = !empty($images)
-                    ? array_map(fn($img) => 'http://www.demoweb.lnw.mn/public/' . htmlspecialchars($img), $images)
-                    : ['http://www.demoweb.lnw.mn/public/default_image.jpg'];
+                    ? array_map(fn($img) => htmlspecialchars($img), $images)
+                    : ['uploads/No_Image.png'];
                 $image_json = htmlspecialchars(json_encode($image_urls));
             ?>
                 <div class="col">

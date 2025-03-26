@@ -16,10 +16,10 @@ if (!empty($data['result']) && $data['result']->num_rows > 0) {
    
     // $image_path = !empty($event['image']) ? '/' . htmlspecialchars($event['image']) : '/public/uploads/default.jpg';
     // echo sprintf('<img src="%s" class="card-img-top" alt="Event Image" style="height: 200px; object-fit: cover;">', $image_path);
-    $images = json_decode($event['images'], true); 
+    $images = json_decode($event['image'], true); 
                 if (!empty($images)) {
                     $first_image = $images[0];
-                    $image_url = 'http://www.demoweb.lnw.mn/public/' . htmlspecialchars($first_image);
+                    $image_url =htmlspecialchars($first_image);
                 } else {
                     $image_url = 'http://www.demoweb.lnw.mn/public/default_image.jpg';
                 }
@@ -49,10 +49,10 @@ if (!empty($data['result']) && $data['result']->num_rows > 0) {
 
         <label for="status">Status:</label>
         <div class="radio-container">
-            <input type="radio" id="checked-in" name="status" value="checked-in" <?php echo ($event['status'] == 'checked-in') ? 'checked' : ''; ?>>
+            <input type="radio" id="checked-in" name="status" value="checked-in">
             <label for="checked-in">Check in</label>
 
-            <input type="radio" id="not-checked-in" name="status" value="not checked-in" <?php echo ($event['status'] == 'not checked-in') ? 'checked' : ''; ?>>
+            <input type="radio" id="not-checked-in" name="status" value="not checked-in" >
             <label for="not-checked-in">Check Out</label>
         </div>
 

@@ -25,7 +25,7 @@
 
     <?php
     if (isset($data['result'])) {
-        if ($data['result']->num_rows > 0) {
+        if (!empty($data['result']) && $data['result']->num_rows > 0) {
             echo '<div class="row mt-4">';
             while ($row = $data['result']->fetch_assoc()) {
                 $event_id = $row['event_id'];
@@ -33,10 +33,10 @@
                 $max_participants = $row['max_participants'];
                 $available_slots = $max_participants - $unique_id_count;
 
-                $images = json_decode($row['images'], true);
+                $images = json_decode($row['image'], true);
                 if (!empty($images)) {
                     $first_image = $images[0];
-                    $image_url = 'http://www.demoweb.lnw.mn/public/' . htmlspecialchars($first_image);
+                    $image_url = htmlspecialchars($first_image);
                 } else {
                     $image_url = 'http://www.demoweb.lnw.mn/public/default_image.jpg';
                 }

@@ -1,6 +1,6 @@
 <?php
 $event = $data['result']->fetch_assoc();
-$images = json_decode($event['images'], true) ?? []; 
+$images = json_decode($event['image'], true) ?? []; 
 ?>
 
 <main>
@@ -8,7 +8,12 @@ $images = json_decode($event['images'], true) ?? [];
         <h1>แก้ไขกิจกรรม</h1>
         <form action="edit_event" method="post" enctype="multipart/form-data">
             <input type="hidden" name="event_id" value="<?php echo htmlspecialchars($event['event_id']); ?>">
-
+            <?php
+            if (!empty($_SESSION['error'])): ?>
+                <div class="alert alert-danger">
+                    <?= $_SESSION['error']; unset($_SESSION['error']); ?>
+                </div>
+            <?php endif; ?>
             <div class="mb-3">
                 <label for="event_name" class="form-label">ชื่อกิจกรรม</label>
                 <input type="text" class="form-control" id="event_name" name="event_name" value="<?php echo htmlspecialchars($event['event_name']); ?>" required>
@@ -43,7 +48,7 @@ $images = json_decode($event['images'], true) ?? [];
                     <div class="row">
                         <?php foreach ($images as $image): ?>
                             <div class="col-3 mb-2">
-                                <img src="http://www.demoweb.lnw.mn/public/<?php echo htmlspecialchars($image); ?>" 
+                                <img src="<?php echo htmlspecialchars($image); ?>" 
                                      alt="Event Image" 
                                      class="img-thumbnail img-fluid" 
                                      style="cursor: pointer; max-height: 150px;">

@@ -163,7 +163,7 @@ function addEvent(
 function updateEvent(int $event_id, string $event_name, string $description, string $date, string $location, int $max_participants, array $image) {
     $conn = getConnection(); 
     $image_json = json_encode($image, JSON_UNESCAPED_SLASHES); 
-    $stmt = $conn->prepare("UPDATE event SET event_name=?, description=?, date=?, location=?, max_participants=?, images=? WHERE event_id=?");
+    $stmt = $conn->prepare("UPDATE event SET event_name=?, description=?, date=?, location=?, max_participants=?, image=? WHERE event_id=?");
     
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
